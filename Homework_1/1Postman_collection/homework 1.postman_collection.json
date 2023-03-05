@@ -1,0 +1,172 @@
+{
+	"info": {
+		"_postman_id": "44ee6c7f-17e2-498a-ac42-229c75e4c15a",
+		"name": "homework 1",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "7341397"
+	},
+	"item": [
+		{
+			"name": "Get All Items",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/resources",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"resources"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Specific Item",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/api/resources/5",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"resources",
+						"5"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Post Random Item",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/resources",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"resources"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Post Specific Item",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"name\": \"Fans\",\r\n        \"model\": \"EAAYAL\",\r\n        \"manufacturer\": \"Noctua\",\r\n        \"quantity\": 578,\r\n        \"unit_cost\": \"45\"\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/resources",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"resources"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Specific Item",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"id\": \"2\",\r\n        \"name\": \"SSD\",\r\n        \"model\": \"WD370\",\r\n        \"manufacturer\": \"Samsung\",\r\n        \"quantity\": 20601,\r\n        \"unit_cost\": 23.45\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/resources/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"resources",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Specific Item",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/api/resources/3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"resources",
+						"3"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
