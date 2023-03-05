@@ -99,7 +99,7 @@ async function updateResource(req, res, id) {
 
         if(!resource) {
             res.writeHead(404, { 'Content-Type': 'application/json' })
-            res.end(JSON.stringify({ message: 'Product Not Found' }))
+            res.end(JSON.stringify({ message: 'Item Not Found' }))
         } else {
             var body = await getPostData(req)
 
@@ -131,11 +131,11 @@ async function deleteResource(req, res, id) {
 
         if(!resource) {
             res.writeHead(404, { 'Content-Type': 'application/json' })
-            res.end(JSON.stringify({ message: 'Product Not Found' }))
+            res.end(JSON.stringify({ message: 'Item Not Found' }))
         } else {
             await Resources.remove(id)
             res.writeHead(200, { 'Content-Type': 'application/json' })
-            res.end(JSON.stringify({ message: `Product ${id} removed` }))
+            res.end(JSON.stringify({ message: 'Item ${id} removed' }))
         }
     } catch (error) {
         console.log(error)
