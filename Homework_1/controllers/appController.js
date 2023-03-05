@@ -1,6 +1,9 @@
 var Resources  = require('../models/appModel.js');
 
-var { getPostData } = require('../utils.js')
+var { getPostData } = require('../utils.js');
+
+var { product_names, manufacturer_names} = require('../dataJSON/manufacturesNames.js');
+
 
 // getResources este pentru toate itemele
 async function getResources(req, res)
@@ -48,19 +51,40 @@ async function createResource(req, res)
     {
         var body = await getPostData(req);
 
-        var { name } = JSON.parse(body);
+        if(body === 'stop_loop')
+        {
+            var randomResource =
+            {
+                name : product_names[Math.floor(Math.random() * product_names.length)],
+                model : ((Math.random() + 1).toString(36).substring(7)).toUpperCase(),
+                manufacturer : manufacturer_names[Math.floor(Math.random() * manufacturer_names.length)],
+                quantity : Math.round(Math.random() * (3700 - 5 + 1) + 5),
+                unit_cost : (Math.random() * (2500 - 17 + 1) + 17).toFixed(4),
+            }
 
-        var resource = {
-            name
-            //description,
-            //price
+            var newRandomResource = await Resources.create(randomResource);
+
+            res.writeHead(201, { 'Content-Type': 'application/json' });
+            return res.end(JSON.stringify(newRandomResource))  ;
         }
+        else
+        {
+            var { name, model, manufacturer, quantity, unit_cost } = JSON.parse(body);
 
-        var newResource = await Resources.create(resource);
+            var resource = {
+                name,
+                model,
+                manufacturer,
+                quantity,
+                unit_cost
+            }
 
-        res.writeHead(201, { 'Content-Type': 'application/json' });
-        return res.end(JSON.stringify(newResource))  ;
+            var newResource = await Resources.create(resource);
 
+            res.writeHead(201, { 'Content-Type': 'application/json' });
+            return res.end(JSON.stringify(newResource))  ;
+        }
+            
     } 
     catch (error) 
     {
@@ -79,12 +103,14 @@ async function updateResource(req, res, id) {
         } else {
             var body = await getPostData(req)
 
-            var { name } = JSON.parse(body)
+            var { name, model, manufacturer, quantity, unit_cost  } = JSON.parse(body)
 
             var resourceData = {
                 name: name || resource.name,
-                //description: description || product.description,
-                //price: price || product.price
+                model: model || resource.model,
+                manufacturer: manufacturer || resource.manufacturer,
+                quantity: quantity || resource.quantity,
+                unit_cost: unit_cost || unit_cost.manufacturer
             }
 
             const updResource = await Resources.update(id, resourceData)

@@ -1,6 +1,7 @@
 var fs = require('fs');
 
-function writeDataToFile(filename, content) {
+function writeDataToFile(filename, content) 
+{
     fs.writeFileSync(filename, JSON.stringify(content), 'utf8', (err) => {
         if(err) {
             console.log(err)
@@ -18,7 +19,15 @@ function getPostData(req) {
             })
 
             req.on('end', () => {
-                resolve(body)
+                if(Object.keys(body).length === 0)
+                {
+                    var  exitLoop = 'stop_loop';
+                    resolve(exitLoop);
+                }
+                else
+                {
+                    resolve(body);
+                }
             })
         } catch (error) {
             reject(error)
@@ -26,7 +35,15 @@ function getPostData(req) {
     })
 }
 
+function getNextMaxID(jsonFile)
+{
+    return (Math.max.apply(Math, jsonFile.map(function(o) {
+        return o.id;
+      })) + 1);
+}
+
 module.exports = {
     writeDataToFile,
-    getPostData
+    getPostData,
+    getNextMaxID
 }

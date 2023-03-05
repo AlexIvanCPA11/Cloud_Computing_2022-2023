@@ -1,7 +1,6 @@
 var resources = require('../dataJSON/resurse_stocate.json');
-var { v4:uuidv4 } = require('uuid');
 
-var { writeDataToFile } = require('../utils.js');
+var { writeDataToFile, getNextMaxID } = require('../utils.js');
 
 function findAll()
 {
@@ -24,12 +23,14 @@ function create(resource)
 {
     return new Promise((resolve, reject) =>
     {
-        var newResource = {id: uuidv4(), ...resource};
+        var newResource = {id: String(getNextMaxID(resources)), ...resource};
         resources.push(newResource);
         writeDataToFile('./dataJSON/resurse_stocate.json', resources);
         resolve(newResource);
     });
 }
+
+
 
 function update(id, itemResource) {
     return new Promise((resolve, reject) => {
@@ -47,6 +48,7 @@ function remove(id) {
         resolve();
     });
 }
+
 
 module.exports = {
     findAll,
