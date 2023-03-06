@@ -64,7 +64,7 @@ async function createResource(req, res)
 
             var newRandomResource = await Resources.create(randomResource);
 
-            res.writeHead(201, { 'Content-Type': 'application/json' });
+            res.writeHead(200, { 'Content-Type': 'application/json' });
             return res.end(JSON.stringify(newRandomResource))  ;
         }
         else
@@ -81,7 +81,7 @@ async function createResource(req, res)
 
             var newResource = await Resources.create(resource);
 
-            res.writeHead(201, { 'Content-Type': 'application/json' });
+            res.writeHead(200, { 'Content-Type': 'application/json' });
             return res.end(JSON.stringify(newResource))  ;
         }
             
