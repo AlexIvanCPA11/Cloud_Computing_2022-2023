@@ -59,7 +59,7 @@ async function createResource(req, res)
                 model : ((Math.random() + 1).toString(36).substring(7)).toUpperCase(),
                 manufacturer : manufacturer_names[Math.floor(Math.random() * manufacturer_names.length)],
                 quantity : Math.round(Math.random() * (3700 - 5 + 1) + 5),
-                unit_cost : (Math.random() * (2500 - 17 + 1) + 17).toFixed(4),
+                unit_cost : parseFloat((Math.random() * (2500 - 17 + 1) + 17).toFixed(4))
             }
 
             var newRandomResource = await Resources.create(randomResource);
